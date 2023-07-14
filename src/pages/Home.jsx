@@ -27,6 +27,7 @@ function Home() {
 
   return (
     <Component>
+      <Image />
       <Box style={{ width: "73%", height: "80%", background: "#FF9933" }}>
         <Form setResult={setResult} />
         <Information result={result} />
