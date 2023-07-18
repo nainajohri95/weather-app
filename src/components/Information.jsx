@@ -1,13 +1,11 @@
-import { Box, Typography, styled } from "@mui/material";
 import {
-  Brightness5,
-  Brightness6,
   Cloud,
   Dehaze,
   LocationOn,
   Opacity,
   SettingsBrightness,
 } from "@mui/icons-material";
+import { Box, Typography, styled } from "@mui/material";
 import React from "react";
 
 const Row = styled(Typography)({
