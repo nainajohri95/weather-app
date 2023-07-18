@@ -1,60 +1,37 @@
-import React from "react";
-import { useState } from "react";
-import { Box, InputBase, Button, styled } from "@mui/material";
-import { getWeather } from "../services/api";
+import { Box, Button, TextField } from "@mui/material";
 
-const Container = styled(Box)({
-  background: "#445A6F",
-  padding: "10px",
-});
-
-const Input = styled(InputBase)({
-  color: "#FFF",
-  marginRight: "20px",
-  fontSize: "18px",
-});
-
-const GetButton = styled(Button)({
-  background: "#e67e22",
-});
-
-function Form({ setResult }) {
-  const [data, setData] = useState({ city: "", country: "" });
-
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-
-    //here key "e.target.name" is a varialble therefore must be enclose inside []
-    // "...data"  is a spread operator to append the data
-  };
-
-  const getWeatherInfo = async () => {
-    if (data.city.trim() === "" || data.country.trim() === "") {
-      // City or country is empty, do not make the API call
-      setResult({});
-      return;
-    }
-
-    let response = await getWeather(data.city, data.country);
-    setResult(response);
-  };
-
+const Form = ({ data = {}, handleChange = () => {}, onSubmit = () => {} }) => {
   return (
-    <Container>
-      <Input placeholder="City" onChange={(e) => handleChange(e)} name="city" />
+    <Box
+      sx={{
+        backgroundColor: "#445A6F",
+        p: "0.825rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "0.5rem",
+      }}
+    >
+      <Box sx={{ display: "flex", gap: "1rem" }}>
+        <TextField
+          placeholder="City"
+          onChange={(e) => handleChange(e)}
+          name="city"
+        />
 
-      <Input
-        placeholder="Country"
-        onChange={(e) => handleChange(e)}
-        name="country"
-      />
+        <TextField
+          placeholder="Country"
+          onChange={(e) => handleChange(e)}
+          name="country"
+        />
+      </Box>
 
-      <GetButton variant="contained" onClick={() => getWeatherInfo()}>
+      <Button disabled={!(data?.city && data?.country)} onClick={onSubmit}>
         Get Weather
-      </GetButton>
-    </Container>
+      </Button>
+    </Box>
   );
-}
+};
 
 export default Form;
 

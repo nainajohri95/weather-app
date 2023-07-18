@@ -11,29 +11,29 @@ import {
 import React from "react";
 
 const Row = styled(Typography)({
+  display: "flex",
   alignItems: "center",
   color: "white",
-  padding: "10px",
-  fontSize: "20px",
-  letterSpacing: "2px",
   "& > svg": {
     marginRight: "10px",
   },
 });
 
-const Message = styled(Typography)({
-  color: "red",
-  margin: "50px",
-  padding: "20px",
-});
-
-function Information({ result }) {
-  console.log(">>> result", result);
+const Information = ({ result }) => {
   return result && Object.keys(result)?.length > 0 ? (
-    <Box style={{ margin: "30px 60px" }}>
+    <Box
+      sx={{
+        height: "25rem",
+        overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        padding: "1rem",
+      }}
+    >
       <Row>
         <LocationOn />
-        Location:{result?.name}, {result?.sys?.country}
+        Location: {result?.name}, {result?.sys?.country}
       </Row>
 
       <Row>
@@ -67,8 +67,12 @@ function Information({ result }) {
       </Row>
     </Box>
   ) : (
-    <Message>Please enter the values to check Weather</Message>
+    <Box sx={{ display: "grid", placeItems: "center", height: "25rem" }}>
+      <Typography align="center" color="red">
+        Please enter the values to check Weather
+      </Typography>
+    </Box>
   );
-}
+};
 
 export default Information;

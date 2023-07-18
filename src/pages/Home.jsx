@@ -1,39 +1,74 @@
 import React from "react";
 import { useState } from "react";
-import { Box, styled } from "@mui/material";
+import { Box, Grid, styled } from "@mui/material";
 import Sunset from "../assets/images/bg.jpg";
 import Form from "../components/Form";
 import Information from "../components/Information";
-
-const Component = styled(Box)({
-  height: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  margin: "0 auto",
-  width: "65%",
-});
+import { getWeather } from "../services/api";
+import { toast } from "react-toastify";
 
 const Image = styled(Box)({
   backgroundImage: `url(${Sunset})`,
+  height: "100%",
   width: "27%",
-  height: "80%",
   backgroundSize: "cover",
   borderRadius: "20px 0 0 20px",
 });
 
-function Home() {
+const Home = () => {
+  const [data, setData] = useState({ city: "", country: "" });
   const [result, setResult] = useState({});
 
+  /* 
+  here key "name" is a varialble therefore must be enclose inside []
+  "...data"  is a spread operator to append the data 
+ */
+  const handleChange = ({ target: { name, value } = {} }) => {
+    setData({ ...data, [name]: value });
+  };
+
+  const onSubmit = () => {
+    const { city, country } = data || {};
+
+    getWeather(city, country)
+      .then((response) => {
+        setResult(response);
+        toast.success("Successfully Fetched Info");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
+
   return (
-    <Component>
-      <Image />
-      <Box style={{ width: "73%", height: "80%", background: "#FF9933" }}>
-        <Form setResult={setResult} />
-        <Information result={result} />
-      </Box>
-    </Component>
+    <Grid
+      container
+      sx={{
+        height: "100dvh",
+        padding: "3rem 8rem",
+        overflow: "hidden",
+      }}
+    >
+      <Grid item xs={4} sx={{ height: "100%" }}>
+        <Box
+          sx={{
+            backgroundImage: `url(${Sunset})`,
+            height: "100%",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      </Grid>
+
+      <Grid item xs={8} sx={{ height: "100%" }}>
+        <Box sx={{ height: "100%", background: "#FF9933", overflow: "hidden" }}>
+          <Form data={data} handleChange={handleChange} onSubmit={onSubmit} />
+          <Information result={result} />
+        </Box>
+      </Grid>
+    </Grid>
   );
-}
+};
 
 export default Home;
