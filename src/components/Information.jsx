@@ -33,37 +33,27 @@ const Information = ({ result }) => {
     >
       <Row>
         <LocationOn />
-        Location: {result?.name}, {result?.sys?.country}
+        Location: {result?.location}
       </Row>
 
       <Row>
         <SettingsBrightness />
-        Temperature: {result?.main?.temp}
+        Temperature: {result?.temperature}
       </Row>
 
       <Row>
         <Opacity />
-        Humidity: {result?.main?.humidity}
-      </Row>
-
-      <Row>
-        <Brightness5 />
-        Sun Rise: {new Date(result?.sys?.sunrise * 1000).toLocaleTimeString()}
-      </Row>
-
-      <Row>
-        <Brightness6 />
-        Sun Set: {new Date(result?.sys?.sunset * 1000).toLocaleTimeString()}
+        Humidity: {result?.humidity}%
       </Row>
 
       <Row>
         <Dehaze />
-        Humidity: {result?.weather?.[0]?.main}
+        Wind: {result?.wind_kph} km/h
       </Row>
 
       <Row>
         <Cloud />
-        Clouds: {result?.clouds?.all}%
+        Clouds: {result?.cloud}%
       </Row>
     </Box>
   ) : (

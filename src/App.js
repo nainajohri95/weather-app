@@ -22,6 +22,7 @@ const theme = createTheme({
     },
     MuiButton: {
       defaultProps: {
+        fullWidth: true,
         variant: "contained",
         size: "small",
         color: "primary",

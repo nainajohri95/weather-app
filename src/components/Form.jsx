@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 
 const Form = ({ data = {}, handleChange = () => {}, onSubmit = () => {} }) => {
   return (
@@ -6,29 +6,23 @@ const Form = ({ data = {}, handleChange = () => {}, onSubmit = () => {} }) => {
       sx={{
         backgroundColor: "#445A6F",
         p: "0.825rem",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: "0.5rem",
       }}
     >
-      <Box sx={{ display: "flex", gap: "1rem" }}>
-        <TextField
-          placeholder="City"
-          onChange={(e) => handleChange(e)}
-          name="city"
-        />
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={8}>
+          <TextField
+            placeholder="City"
+            onChange={(e) => handleChange(e)}
+            name="city"
+          />
+        </Grid>
 
-        <TextField
-          placeholder="Country"
-          onChange={(e) => handleChange(e)}
-          name="country"
-        />
-      </Box>
-
-      <Button disabled={!(data?.city && data?.country)} onClick={onSubmit}>
-        Get Weather
-      </Button>
+        <Grid item xs={4}>
+          <Button disabled={!data?.city} onClick={onSubmit}>
+            Get Weather
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

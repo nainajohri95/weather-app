@@ -7,7 +7,7 @@ import Information from "../components/Information";
 import { getWeather } from "../services/api";
 
 const Home = () => {
-  const [data, setData] = useState({ city: "", country: "" });
+  const [data, setData] = useState({ city: "" });
   const [result, setResult] = useState({});
 
   /* 
@@ -19,9 +19,9 @@ const Home = () => {
   };
 
   const onSubmit = () => {
-    const { city, country } = data || {};
+    const { city } = data || {};
 
-    getWeather(city, country)
+    getWeather(city)
       .then((response) => {
         setResult(response);
         toast.success("Successfully Fetched Info");
