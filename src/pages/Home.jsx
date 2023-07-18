@@ -1,19 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { Box, Grid, styled } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import Sunset from "../assets/images/bg.jpg";
 import Form from "../components/Form";
 import Information from "../components/Information";
 import { getWeather } from "../services/api";
-import { toast } from "react-toastify";
-
-const Image = styled(Box)({
-  backgroundImage: `url(${Sunset})`,
-  height: "100%",
-  width: "27%",
-  backgroundSize: "cover",
-  borderRadius: "20px 0 0 20px",
-});
 
 const Home = () => {
   const [data, setData] = useState({ city: "", country: "" });
