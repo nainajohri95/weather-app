@@ -70,7 +70,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-![Screenshot (120)](https://github.com/nainajohri95/weather-app/assets/93525285/0a95a94d-44ca-4f69-860f-63ee5792fe00)
+
+![Screenshot (121)](https://github.com/nainajohri95/weather-app/assets/93525285/291a73aa-57c7-42c5-b093-547dd2a873e4)
 
 
 Live Link:- https://weather-app-naina.netlify.app/
